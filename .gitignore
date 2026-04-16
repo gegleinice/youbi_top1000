@@ -1,0 +1,12 @@
+# 本地采集的原始分页数据体积较大，不建议提交到 GitHub
+data/raw/
+
+# 常见本地工具/二进制（若你后续手动下载 cloudflared 等）
+bin/
+
+# macOS
+.DS_Store
+
+# Python
+__pycache__/
+*.py[cod]
