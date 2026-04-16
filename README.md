@@ -63,27 +63,26 @@ python3 -m http.server 8000
 
 ## 3) 托管到 GitHub Pages（给别人看）
 
-本仓库已包含 GitHub Actions 工作流：`.github/workflows/deploy-pages.yml`。
+本仓库使用 **GitHub Pages（legacy，从 `main` 分支根目录发布静态文件）**。
 
-### 你需要做的设置
+### 公开访问地址
 
-1. 在 GitHub 创建仓库并推送本目录代码到 `main` 分支
-2. 打开仓库 **Settings → Pages**
-3. **Build and deployment** 里选择 **Source: GitHub Actions**
-4. 推送任意一次到 `main`（或手动运行 workflow）触发部署
-
-部署完成后访问（把 `OWNER/REPO` 换成你的）：
-- `https://OWNER.github.io/REPO/`（根路径会自动跳转到 `dashboard/`）
-- `https://OWNER.github.io/REPO/dashboard/`
+- `https://gegleinice.github.io/youbi_top1000/`（根路径会自动跳转到 `dashboard/`）
+- `https://gegleinice.github.io/youbi_top1000/dashboard/`
 
 ### 数据文件说明
 
-- 公开站点会打包发布：`dashboard/`、`data/top1000.json`、`index.html`
+- 站点发布内容来自仓库根目录的静态文件：`index.html`、`dashboard/`、`data/top1000.json`
 - `data/raw/` 已在 `.gitignore` 中忽略（体积大、且通常不需要公开）
 
 ### 安全提醒
 
 不要把 API `token` / `clientid` 写进仓库或提交到 GitHub。采集请在本地执行，只提交 `data/top1000.json`（或你脱敏后的数据文件）。
+
+### 说明：为什么不用 GitHub Actions 工作流发布？
+
+在本机使用 `gh` 的默认 OAuth token 推送 `.github/workflows/*.yml` 往往需要额外的 `workflow` scope。
+为减少你本地授权步骤，这里改为 **直接从 `main` 发布静态站点**（同样可公开访问）。
 
 ## 4) 数据刷新流程（一键思路）
 
